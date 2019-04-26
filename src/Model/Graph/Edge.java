@@ -11,6 +11,8 @@ public class Edge {
         this.backVertex = backVertex;   //anterior
         this.nextVertex = nextVertex;   //proximo
         this.value = value;
+        this.backVertex.add(nextVertex);
+        this.nextVertex.add(backVertex);
     }
 
 }

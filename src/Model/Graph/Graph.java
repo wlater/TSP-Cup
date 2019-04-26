@@ -18,7 +18,7 @@ public class Graph {
         if (!listVertex.contains(vertex)) {
             listVertex.add(vertex);
         }
-
+        
     }
 
     public void addEdge(Edge edge) {

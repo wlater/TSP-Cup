@@ -19,6 +19,8 @@ public class TSP {
                                cn.get(i).nodeY);
         }
 
+
+        
         /*
         // inicio mapeamento de arquivo
 		float nodeX, nodeY;
