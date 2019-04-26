@@ -1,0 +1,16 @@
+Como interpretar os arquivos:
+
+-) O número de vértices pode ser encontrado no campo DIMENSION.
+
+-) O modo mais fácil de criar a matriz de custos é primeiro ler os dados da seção DISPLAY_DATA_SECTION, que especifica as  coordenadas x e y de cada vértice (cidade). Em seguida, para cada celula (i,j) da matriz de custo calculamos a distância euclidiana do ponto i ao ponto j e convertemos o valor resultante para o inteiro mais próximo. 
+
+Soluções ótimas
+-) bayg29 = 1610
+-) bays29 = 2020
+-) berlin52 = 7542
+-) bier127 = 118282
+-) brazil58 = 25395
+-) ch130 = 6110
+-) ch150 = 6528
+-) kroB100 = 22141
+-) swiss42 = 1273
