@@ -1,9 +1,10 @@
 package Infra;
 
 import Model.node.City_node;
+import com.sun.org.apache.xerces.internal.impl.xpath.regex.Match;
 import java.util.ArrayList;
 
-public class Loader {
+public class Loader{
 
     private final TXT loader;
 
@@ -37,7 +38,7 @@ public class Loader {
             aux = dados[i].split(" ");
 
             try {
-                
+
                 if (aux[0].length() > 0) {
                     j = -1;                 //partes do arquivo contem espaço vazio no inicio e em outras nao
                 }

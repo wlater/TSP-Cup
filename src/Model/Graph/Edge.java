@@ -1,18 +1,19 @@
 package Model.Graph;
 
+import Model.node.City_node;
+
 public class Edge {
 
     public int id;
     public int value;  //Peso da aresta
-    public Vertex backVertex;
-    public Vertex nextVertex;
+    public City_node nodeA;
+    public City_node nodeB;
 
-    public Edge(Vertex backVertex, Vertex nextVertex, int value) {
-        this.backVertex = backVertex;   //anterior
-        this.nextVertex = nextVertex;   //proximo
+    public Edge(City_node nodeA, City_node nodeB, int value) {
+        this.nodeA = nodeA;   //anterior
+        this.nodeA = nodeB;   //proximo
         this.value = value;
-        this.backVertex.add(nextVertex);
-        this.nextVertex.add(backVertex);
+
     }
 
 }
