@@ -14,7 +14,7 @@ public class City_node {
         public double distancia(City_node nodeB){
         
         int x0 = this.nodeX;
-        int y0 = this.nodeX;
+        int y0 = this.nodeY;
         
         int x1 = nodeB.nodeX;
         int y1 = nodeB.nodeY;
