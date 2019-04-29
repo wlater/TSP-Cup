@@ -4,7 +4,7 @@ import Model.node.City_node;
 import com.sun.org.apache.xerces.internal.impl.xpath.regex.Match;
 import java.util.ArrayList;
 
-public class Loader{
+public class Loader {
 
     private final TXT loader;
 

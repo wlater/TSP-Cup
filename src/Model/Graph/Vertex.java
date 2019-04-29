@@ -1,9 +1,8 @@
-
 package Model.Graph;
-
 import java.util.LinkedList;
 
 public class Vertex {
+
     public int id;
     public String getLabel;
     protected LinkedList<Vertex> listVertex;
@@ -19,10 +18,11 @@ public class Vertex {
         this.getLabel = label;
         this.listVertex = new LinkedList<>();
     }
-    
-    public void add(Vertex vertex){
-        if(!listVertex.contains(vertex))
+
+    public void add(Vertex vertex) {
+        if (!listVertex.contains(vertex)) {
             listVertex.add(vertex);
+        }
     }
-    
+
 }

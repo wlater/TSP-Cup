@@ -1,8 +1,10 @@
 package Model.Graph;
 
+import Model.node.City_node;
 import java.util.ArrayList;
 
-public class Graph {
+public class Graph {/*
+    
 
     public int edgeSum;
     ArrayList<Vertex> listVertex;
@@ -43,11 +45,11 @@ public class Graph {
     
     public ArrayList<City_node> BestRoute(ArrayList<City_node> nodesList) {  						  
 		for (int i=0, j=aux  ; i < nodesList.size()-1; i++) { 			   //pega a lista de edges ou caminhos que foi inflada na classe
-		   for (int k = i; k < nodesList.size(); k++){ 				       //e para cada nó compara o caminho do mesmo com todos os outros 
+		   for (int k = i; k < nodesList.size(); k++){ 				       //e para cada nï¿½ compara o caminho do mesmo com todos os outros 
 			  if(listEdge.get(j).value == nodesList.get(k).value) {}
-			  else if(listEdge.get(j).value < nodesList.get(k).value) {	   //caminhos que ele faz do array ate achar a menor distancia enntre ele e os outros nós, 
-		    	  bestEdges.add(i, nodesList.get(i));					   //ele então começa a fazer o mesmo para o no que foi achado no primeiro laço da 
-		      }else {													   //busca até buscar em todos
+			  else if(listEdge.get(j).value < nodesList.get(k).value) {	   //caminhos que ele faz do array ate achar a menor distancia enntre ele e os outros nï¿½s, 
+		    	  bestEdges.add(i, nodesList.get(i));					   //ele entï¿½o comeï¿½a a fazer o mesmo para o no que foi achado no primeiro laï¿½o da 
+		      }else {													   //busca atï¿½ buscar em todos
 		    	  bestEdges.add(i, nodesList.get(k));
 		      }
 	    	aux=k;  
@@ -56,7 +58,7 @@ public class Graph {
     	return bestEdges;
     }
     
-    public boolean Validate(ArrayList<City_node> edgeList, int bestSol) {  //recebe uma lista de edges e a solução otima
+    public boolean Validate(ArrayList<City_node> edgeList, int bestSol) {  //recebe uma lista de edges e a soluï¿½ï¿½o otima
     	boolean decSol = false;
     	
     	for(Edge aux : edgeList) {					 				  //percorre todas as edges da lista
@@ -64,8 +66,9 @@ public class Graph {
     		
     	}
     	
-    	if(edgeSum==bestSol) {return decSol = true;} 				  //testa se o valor final bate com a solução otima e retona true caso seja.
+    	if(edgeSum==bestSol) {return decSol = true;} 				  //testa se o valor final bate com a soluï¿½ï¿½o otima e retona true caso seja.
     	else {return decSol;}
     }
 
+    */
 }
