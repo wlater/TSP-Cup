@@ -1,14 +1,9 @@
 package View;
 
+import Heuristicas.*;
 import Infra.Loader;
+import Model.Graph.Adjacencia;
 import Model.node.City_node;
-import static Principal.show;
-import static Principal.show;
-import static Principal.show;
-import RadixSort;
-import java.security.Principal;
-import java.util.ArrayList;
-import static java.util.Collections.sort;
 
 public class TSP {
 
@@ -16,32 +11,29 @@ public class TSP {
 
         Loader loader = new Loader();
         
-        
-        
-        
-        
+        City_node[] nodes = loader.loaderCoord("tsp2");     //Lista de nodes
+        //showNodes(nodes);
 
-        ArrayList<City_node> cn = loader.loaderCoord("tsp2");
-
-        
-        for (int i = 0; i < cn.size() - 1; i++ ){
-            for (int j = i + 1; j < cn.size(); j++){
-                cn.get(i).addAdjacencia(cn.get(j),cn.get(i).distancia(cn.get(j)) );
-                cn.get(j).addAdjacencia(cn.get(i),cn.get(j).distancia(cn.get(j)) );
+        //Insere as adjacencias em cada node
+        for (int i = 0; i < nodes.length - 1; i++) {
+            for (int j = i + 1; j < nodes.length; j++) {
+                double distance = nodes[i].distancia(nodes[j]);
+                nodes[i].listaAdjacencia.add(new Adjacencia(nodes[j], distance));
+                nodes[j].listaAdjacencia.add(new Adjacencia(nodes[i], distance));
             }
         }
-        
-        Sort sort = new RadixSort();
-        sort.sort(vetor);
-        System.out.println("\nRadixSort");
-        show(vetor);      
 
         
-        cn.get(0).listaAdjacencia.get(0);
-        System.out.println(cn.get(5).distancia(cn.get(0)));
-        System.out.println(cn.get(5).nodeX);
-        System.out.println(cn.get(0).distancia(cn.get(5)));
-        System.out.println(cn.get(0).nodeX);
+        Heuristica heuristica = new Construtiva();
+        heuristica.solucao(nodes);
+
         
     }
+
+    public static void showNodes(City_node[] nodes) {
+        for (int i = 0; i < nodes.length; i++) {
+            System.err.println(nodes[i].nodeID + "\t" + nodes[i].nodeX + "\t" + nodes[i].nodeY);
+        }
+    }
+
 }

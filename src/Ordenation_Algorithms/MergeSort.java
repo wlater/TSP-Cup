@@ -1,53 +1,63 @@
+package Ordenation_Algorithms;
 
-
+import Model.Graph.Adjacencia;
 
 public class MergeSort implements Sort {
 
     @Override
-    public int[] sort(int[] array) {
-        mergeSort(array, 0, array.length);
-        return array;
+    public void sort(Adjacencia[] vetor) {
+        int inicio = 0;
+        int fim = vetor.length - 1;
+
+        mergeSort(inicio, fim, vetor);
     }
 
-    private void mergeSort(int[] vetor, int inicio, int fim) {
-
-        fim -= (fim >= vetor.length) ? 1 : 0;
+    public void mergeSort(int inicio, int fim, Adjacencia[] vetor) {
 
         if (inicio < fim) {
-            int meio = (int) (inicio + fim) / 2;
-            mergeSort(vetor, inicio, meio);
-            mergeSort(vetor, meio + 1, fim);
-            merge(vetor, inicio, meio, fim);
+            int meio = (inicio + fim) / 2;
+            mergeSort(inicio, meio, vetor);
+            mergeSort(meio + 1, fim, vetor);
+            merge(inicio, meio, fim, vetor);
         }
+
     }
 
-    private void merge(int[] vetor, int inicio, int meio, int fim) {
+    public void merge(int inicio, int meio, int fim, Adjacencia[] vetor) {
 
-        if ((vetor[inicio] > vetor[meio + 1]) && (fim - inicio) % 2 != 0) 
-            troca(vetor, inicio, meio + 1);
-        
-        int i = fim - 1;
-        int j = fim;
+        Adjacencia[] L = new Adjacencia[meio - inicio + 1];
+        Adjacencia[] R = new Adjacencia[fim - meio];
 
-        for (int k = fim; k > 0; k--) {
+        int i, j;
+        for (i = 0; i < L.length; i++) {
+            L[i] = vetor[i + inicio];
+        }
 
-            if (vetor[i] < vetor[k - 1]) {
-                troca(vetor, i, k - 1);
-                i--;
+        for (i = 0; i < R.length; i++) {
+            R[i] = vetor[i + meio + 1];
+        }
+
+        i = j = 0;
+
+        for (int k = inicio; k <= fim; k++) {
+
+            if (i >= L.length) {
+                vetor[k] = R[j];
+                j++;
+            } else if (j >= R.length) {
+                vetor[k] = L[i];
+                i++;
+            } else {
+                if (L[i].disttance <= R[j].disttance) {
+                    vetor[k] = L[i];
+                    i++;
+                } else {
+                    vetor[k] = R[j];
+                    j++;
+                }
             }
 
-            if (vetor[j] < vetor[j - 1]) {
-                troca(vetor, j, j - 1);
-                j--;
-            }
         }
+
     }
-
-    private void troca(int[] vetor, int i, int j) {
-
-        int aux = vetor[i];
-        vetor[i] = vetor[j];
-        vetor[j] = aux;
-    }
-
 }

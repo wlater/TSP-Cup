@@ -1,7 +1,9 @@
 package Ordenation_Algorithms;
 
-interface Sort {
+import Model.Graph.Adjacencia;
+
+public interface Sort {
    
-    public double[] sort(double[] array);
+    public void sort( Adjacencia[] vetor);
  
 }

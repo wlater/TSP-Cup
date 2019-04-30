@@ -1,7 +1,6 @@
 package Infra;
 
 import Model.node.City_node;
-import com.sun.org.apache.xerces.internal.impl.xpath.regex.Match;
 import java.util.ArrayList;
 
 public class Loader {
@@ -12,21 +11,30 @@ public class Loader {
         this.loader = TXT.getInstance();
     }
 
-    public ArrayList loaderCoord(String arquivo) {
+    public City_node[] loaderCoord(String arquivo) {
 
         ArrayList<City_node> cn = new ArrayList<>();
+        City_node[] listCityNode;
         int nodeID = 0;
         float nodeX = 0, nodeY = 0;
 
         String dados[] = loader.ler(arquivo).split("\n");
         String aux[];
 
-        int i;
+        int i, len = 0, cont = 0;
+        
         for (i = 0; i < dados.length; i++) {
+            if(dados[i].contains("DIMENSION:")){
+                String data[] = dados[i].split(" ");
+                len = Integer.parseInt(data[1]);
+            }
+
             if (dados[i].contains("DISPLAY_DATA_SECTION")) {
                 break;
             }
         }
+        
+        listCityNode = new City_node[len];
 
         while (!dados[i + 1].contains("EOF")) {
 
@@ -51,9 +59,11 @@ public class Loader {
                 System.err.println("Erro ao converter String -> Float");
             }
 
-            cn.add(new City_node(nodeID, Math.round(nodeX), Math.round(nodeY)));
+            listCityNode[cont] = new City_node(nodeID, Math.round(nodeX), Math.round(nodeY));
+            cont++;
+            //cn.add(new City_node(nodeID, Math.round(nodeX), Math.round(nodeY)));
         }
 
-        return cn;
+        return listCityNode;
     }
 }
