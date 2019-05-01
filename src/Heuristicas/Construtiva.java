@@ -10,26 +10,54 @@ public class Construtiva implements Heuristica {
     @Override
     public City_node[] solucao(City_node[] nodes) {
 
-        //Vetor com a solucao
-        City_node[] solucao = new City_node[nodes.length + 1];
-        
-        ordena(nodes);
-        
-        int i;
-        for(i = 0; i < 10; i++){
-            //Insere o node com a menor distancia
-            solucao[i] = nodes[i].listaAdjacencia.get(0).node;
-            System.err.println(solucao[i].nodeID + "\t" + solucao[i].nodeX + "\t" + solucao[i].nodeY );
+        try {
+
+            //Vetor com a solucao
+            City_node[] solucao = new City_node[nodes.length + 1];
+
+            //ordena lista de adjacencia de todos os nodes
+            ordena(nodes);
+
+            //showAdjacencias(nodes, 450);
+            City_node proxNode;
+            proxNode = nodes[0];
+            proxNode.visitado = true;
+            solucao[0] = proxNode;
+
+            int i;
+
+            for (i = 1; i < nodes.length; i++) {
+
+                int j = 0;
+
+                try {
+                    
+                    while (proxNode.visitado) {
+                        proxNode = nodes[proxNode.nodeID].listaAdjacencia.get(j).node;
+                        j++;
+                    }
+                    
+                } catch (Exception er) {
+                    System.err.println("falha ao atribuir proximo node");
+                }
+
+                //System.out.println("j = " + j);
+                proxNode.visitado = true;
+                solucao[i] = proxNode;
+                
+            }
+            solucao[i] = nodes[0];
+
+            return solucao;
+        } catch (Exception e) {
+            System.out.println("falha na Heuristica construtiva");
         }
-        
-       
-        
-        return solucao;
-        
+        return null;
     }
 
+    //passa em cada node e ordena sua lista de adjacencia
     private void ordena(City_node[] nodes) {
-        
+
         Sort sort = new MergeSort();
 
         for (int k = 0; k < nodes.length; k++) {
@@ -51,4 +79,13 @@ public class Construtiva implements Heuristica {
             }
         }
     }
+
+    private void showAdjacencias(City_node[] nodes, int id) {
+        //Exibe a lista de adjacencia de um determinado node
+        for (int i = 0; i < nodes[id].listaAdjacencia.size(); i++) {
+            System.out.print(nodes[id].listaAdjacencia.get(i).node.nodeID + "\t");
+            System.out.println(nodes[id].listaAdjacencia.get(i).distance);
+        }
+    }
+
 }

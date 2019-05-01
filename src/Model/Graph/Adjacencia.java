@@ -5,10 +5,10 @@ import Model.node.City_node;
 
 public class Adjacencia {
     public City_node node;
-    public double disttance;
+    public double distance;
     
     public Adjacencia(City_node node, double distance){
         this.node = node;
-        this.disttance = distance;
+        this.distance = distance;
     }
 }

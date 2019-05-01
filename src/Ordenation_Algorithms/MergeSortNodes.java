@@ -1,18 +1,17 @@
 package Ordenation_Algorithms;
 
-import Model.Graph.Adjacencia;
+import Model.node.City_node;
 
-public class MergeSort implements Sort {
+public class MergeSortNodes {
 
-    @Override
-    public void sort(Adjacencia[] vetor) {
+    public void sort(City_node[] vetor) {
         int inicio = 0;
         int fim = vetor.length - 1;
 
         mergeSort(inicio, fim, vetor);
     }
 
-    public void mergeSort(int inicio, int fim, Adjacencia[] vetor) {
+    public void mergeSort(int inicio, int fim, City_node[] vetor) {
 
         if (inicio < fim) {
             int meio = (inicio + fim) / 2;
@@ -23,10 +22,10 @@ public class MergeSort implements Sort {
 
     }
 
-    public void merge(int inicio, int meio, int fim, Adjacencia[] vetor) {
+    public void merge(int inicio, int meio, int fim, City_node[] vetor) {
 
-        Adjacencia[] L = new Adjacencia[meio - inicio + 1];
-        Adjacencia[] R = new Adjacencia[fim - meio];
+        City_node[] L = new City_node[meio - inicio + 1];
+        City_node[] R = new City_node[fim - meio];
 
         int i, j;
         for (i = 0; i < L.length; i++) {
@@ -48,7 +47,7 @@ public class MergeSort implements Sort {
                 vetor[k] = L[i];
                 i++;
             } else {
-                if (L[i].distance <= R[j].distance) {
+                if (L[i].nodeID <= R[j].nodeID) {
                     vetor[k] = L[i];
                     i++;
                 } else {

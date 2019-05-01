@@ -7,12 +7,14 @@ public class City_node {
 
     public int nodeID, nodeX, nodeY;
     public ArrayList<Adjacencia> listaAdjacencia;
+    public boolean visitado;
 
     public City_node(int nodeID, int nodeX, int nodeY) {
         this.nodeX = nodeX;
         this.nodeY = nodeY;
         this.nodeID = nodeID;
         listaAdjacencia = new ArrayList<>();
+        visitado = false;
     }
 
     public double distancia(City_node nodeB) {
