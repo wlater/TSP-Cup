@@ -23,6 +23,7 @@ public class VND implements Heuristica {
         double iniDist = distance(iniSol), newDist = distance(iniSol);
         int a = 0, b = nodesList.length-1;
 
+//      while(a < (nodesList.length-1)/2) {
         while (!sair) {
             aux = nodesList[a];
             nodesList[a] = nodesList[b];
@@ -52,8 +53,8 @@ public class VND implements Heuristica {
     	City_node aux;
     	int a = 0, b = nodesList.length-1;
 
-    	while(a < nodesList.length / 2) {
-    		for(int i = a, j = b; i <= nodesList.length/2; i++, j--) {
+    	while(a < (nodesList.length-1)/2) {
+    		for(int i = a, j = b; i < (nodesList.length-1)/2; i++, j--) {
     			aux = nodesList[i+1];
     			nodesList[i+1] = nodesList[j-1];
     			nodesList[j-1] = aux;
