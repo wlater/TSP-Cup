@@ -6,5 +6,5 @@ interface CRUD {
     public String ler(String nomeArquivo);
     public boolean atualizar();
     public boolean excluir();
-    
+
 }

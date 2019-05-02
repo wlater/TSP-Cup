@@ -26,25 +26,25 @@ public class Construtiva implements Heuristica {
 
             int i;
 
-            for (i = 1; i < nodes.length; i++) {
+            for (i = 1; i < nodes.length ; i++) {
 
                 int j = 0;
 
                 try {
-                    
+
                     while (proxNode.visitado) {
                         proxNode = nodes[proxNode.nodeID].listaAdjacencia.get(j).node;
                         j++;
                     }
-                    
+
                 } catch (Exception er) {
                     System.err.println("falha ao atribuir proximo node");
-                }
 
+                }
                 //System.out.println("j = " + j);
                 proxNode.visitado = true;
                 solucao[i] = proxNode;
-                
+
             }
             solucao[i] = nodes[0];
 
