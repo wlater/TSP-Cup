@@ -33,7 +33,7 @@ public class TSP {
             heuristica = new VND();
             solucao = heuristica.solucao(nodes);
 
-            System.out.println("Custo de tempo  = " + ((System.currentTimeMillis() - tInicial) / 1000 / 60) + "min");
+            System.out.println("Custo de tempo: \t" + ((System.currentTimeMillis() - tInicial) / 1000 / 60) + "min");
             System.err.println("A solucao é: \t" + new VND().calcSolucao(solucao));
             showNodes(solucao);
 

@@ -6,15 +6,41 @@ public class VND implements Heuristica {
 
     @Override
     public City_node[] solucao(City_node[] nodes) {
-        City_node[] solucao;
+        City_node[] solucao = nodes.clone();
+        City_node[] tmp;
 
-        solucao = DoisOpt(nodes);
+        double melhorSolucao = calcSolucao(solucao);    //melhor solucao inicialmente
+
+        int k = 1;
+        int r = 2;
+
+        /*
+        *   Inicialmente realiza o Swap()
+        *     Se a solucao encontrada for melhor: execute Swap() novamente
+        *     Senão: execute DoisOpt()
+        *     Se a solucao de DoisOpt() for melhor: execute Swap() novamente
+        *   realize o processo ate que nao haja solucao melhor
+        */
+
+
+        while(k <= r){
+
+            if(k == 1) {tmp = Swap(solucao);}
+            else {tmp = DoisOpt(solucao);}
+
+            if( calcSolucao(tmp) < melhorSolucao){
+                solucao = tmp;
+                k = 1;            //executa o Swap() novamente
+            }else
+                k++;              //  executa o DoisOpt()
+
+        }
 
         return solucao;
     }
 
-    
-    
+
+
     public City_node[] Swap(City_node[] nodesList) {
 
         //Inicialmente a melhor solucao que temos eh a do vetor original
@@ -22,7 +48,7 @@ public class VND implements Heuristica {
         double tmpSolucao;
         City_node[] tmp;
         //Criado o vetor solucao para que o nodesList nao seja alterado
-        City_node[] solucao = nodesList;
+        City_node[] solucao = nodesList.clone();
 
         for (int i = 0; i < solucao.length; i++) {
             for (int j = i + 1; j < solucao.length; j++) {
@@ -46,22 +72,22 @@ public class VND implements Heuristica {
         City_node[] tmp;
         //Criado o vetor solucao para que o nodesList nao seja alterado
         City_node[] solucao = nodesList;
-        
-        
+
+
         for(int inicio = 0; inicio < solucao.length; inicio++){
-            
+
             for (int fim = inicio + 1; fim < solucao.length; fim++){
-                
+
                 tmp = invertaVetor(inicio, fim, solucao);
                 tmpSolucao = calcSolucao(nodesList);
-                
+
                 if (tmpSolucao < melhorSolucao) {
                     melhorSolucao = tmpSolucao;
                     solucao = tmp;
-                }    
+                }
             }
         }
-        
+
         return solucao;
     }
 
