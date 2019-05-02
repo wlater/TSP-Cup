@@ -12,7 +12,6 @@ public class TSP {
 
         try {
 
-
             Loader loader = new Loader();
 
             City_node[] nodes = loader.loaderCoord("tsp2");     //Lista de nodes
@@ -22,18 +21,25 @@ public class TSP {
             copyNodes(copyNodes, nodes);
             //nodes = copyNodes;
 
+            System.err.println("A solucao pura " + new VND().calcSolucao(nodes));
 
             insereAdjacencia(nodes);
 
+           Heuristica heuristica;// = new Construtiva();
+           City_node[] solucao;// = heuristica.solucao(nodes);
 
-            Heuristica heuristica = new VND();
-            City_node[] solucao = heuristica.solucao(nodes);
+           long tInicial = System.currentTimeMillis();
+           
+            heuristica = new VND();
+            solucao = heuristica.solucao(nodes);
+            
+            System.out.println("Custo de tempo  = " + (System.currentTimeMillis() - tInicial) + "ms");
 
-            System.err.println("A solucao eh " );
-            System.err.println(new VND().distance(solucao));
+            System.err.println("A solucao eh ");
+            System.err.println(new VND().calcSolucao(solucao));
 
-            showAdjacencia(nodes);
-
+            showNodes(solucao);
+            //showAdjacencia(nodes);
 
         } catch (Exception e) {
         }
@@ -47,6 +53,7 @@ public class TSP {
                 System.out.print(copyNodes[i].nodeID + " -> \t");
                 for (int j = 0; j < copyNodes[i].listaAdjacencia.size(); j++) {
                     System.out.printf("%.1f \t", copyNodes[i].listaAdjacencia.get(j).distance);
+                    //System.out.printf("%.1f \t", copyNodes[i].listaAdjacencia.get(j).node.nodeID);
                 }
                 System.err.println("\n");
             }
