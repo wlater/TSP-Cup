@@ -21,25 +21,21 @@ public class TSP {
             copyNodes(copyNodes, nodes);
             //nodes = copyNodes;
 
-            System.err.println("A solucao pura " + new VND().calcSolucao(nodes));
+            System.err.println("solucao Original: " + new VND().calcSolucao(nodes));
 
             insereAdjacencia(nodes);
 
-           Heuristica heuristica;// = new Construtiva();
-           City_node[] solucao;// = heuristica.solucao(nodes);
+            Heuristica heuristica;// = new Construtiva();
+            City_node[] solucao;// = heuristica.solucao(nodes);
 
-           long tInicial = System.currentTimeMillis();
-           
+            long tInicial = System.currentTimeMillis();
+
             heuristica = new VND();
             solucao = heuristica.solucao(nodes);
-            
-            System.out.println("Custo de tempo  = " + (System.currentTimeMillis() - tInicial) + "ms");
 
-            System.err.println("A solucao eh ");
-            System.err.println(new VND().calcSolucao(solucao));
-
+            System.out.println("Custo de tempo  = " + ((System.currentTimeMillis() - tInicial) / 1000 / 60) + "min");
+            System.err.println("A solucao é: \t" + new VND().calcSolucao(solucao));
             showNodes(solucao);
-            //showAdjacencia(nodes);
 
         } catch (Exception e) {
         }
