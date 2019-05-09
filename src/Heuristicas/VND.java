@@ -1,18 +1,19 @@
 package Heuristicas;
 
-import Model.node.City_node;
+public class VND extends Operacoes {
 
-public class VND implements Heuristica {
+    public int[] solucao(int[] nodes, int[][] matriz) {
 
-    @Override
-    public City_node[] solucao(City_node[] nodes) {
-        City_node[] solucao = nodes.clone();
-        City_node[] tmp;
+        int[] solucao = nodes.clone();
+        int[] tmp;
 
-        double melhorSolucao = calcSolucao(solucao);    //melhor solucao inicialmente
+
+        double melhorSolucao = calcSolucao(solucao, matriz);    //melhor solucao inicialmente
 
         int k = 1;
         int r = 2;
+
+        int cont = 0;
 
         /*
         *   Inicialmente realiza o Swap()
@@ -22,64 +23,61 @@ public class VND implements Heuristica {
         *   realize o processo ate que nao haja solucao melhor
         */
 
+        while (k <= r) {
+            cont++;
 
-        while(k <= r){
+            if (k == 1) tmp = Swap(solucao, matriz);
+            else tmp = DoisOpt(solucao, matriz);
 
-            if(k == 1) {tmp = Swap(solucao);}
-            else {tmp = DoisOpt(solucao);}
-
-            if( calcSolucao(tmp) < melhorSolucao){
+            if (calcSolucao(tmp, matriz) < melhorSolucao) {
                 solucao = tmp;
+                melhorSolucao = calcSolucao(solucao, matriz);
                 k = 1;            //executa o Swap() novamente
-            }else
+            } else {
                 k++;              //  executa o DoisOpt()
-
+            }
         }
 
         return solucao;
     }
 
+    public int[] Swap(int[] nodesList, int[][] matriz) {
 
-
-    public City_node[] Swap(City_node[] nodesList) {
-
-        //Inicialmente a melhor solucao que temos eh a do vetor original
-        double melhorSolucao = calcSolucao(nodesList);
+        //solucao eh um vetor que contem o "id" dos nodes
+        double melhorSolucao = calcSolucao(nodesList, matriz);
         double tmpSolucao;
-        City_node[] tmp;
-        //Criado o vetor solucao para que o nodesList nao seja alterado
-        City_node[] solucao = nodesList.clone();
+
+        int[] tmp;
+        int[] solucao = nodesList.clone();
 
         for (int i = 0; i < solucao.length; i++) {
             for (int j = i + 1; j < solucao.length; j++) {
                 tmp = trocaPosicao(i, j, solucao);
-                tmpSolucao = calcSolucao(tmp);
+                tmpSolucao = calcSolucao(tmp, matriz);
                 if (tmpSolucao < melhorSolucao) {
                     melhorSolucao = tmpSolucao;
                     solucao = tmp;
                 }
             }
         }
-
         return solucao;
     }
 
-    public City_node[] DoisOpt(City_node[] nodesList) {
+    public int[] DoisOpt(int[] nodesList, int[][] matriz) {
 
         //Inicialmente a melhor solucao que temos eh a do vetor original
-        double melhorSolucao = calcSolucao(nodesList);
+        double melhorSolucao = calcSolucao(nodesList, matriz);
         double tmpSolucao;
-        City_node[] tmp;
+        int[] tmp;
         //Criado o vetor solucao para que o nodesList nao seja alterado
-        City_node[] solucao = nodesList;
+        int[] solucao = nodesList;
 
+        for (int inicio = 0; inicio < solucao.length; inicio++) {
 
-        for(int inicio = 0; inicio < solucao.length; inicio++){
-
-            for (int fim = inicio + 1; fim < solucao.length; fim++){
+            for (int fim = inicio + 1; fim < solucao.length; fim++) {
 
                 tmp = invertaVetor(inicio, fim, solucao);
-                tmpSolucao = calcSolucao(nodesList);
+                tmpSolucao = calcSolucao(nodesList, matriz);
 
                 if (tmpSolucao < melhorSolucao) {
                     melhorSolucao = tmpSolucao;
@@ -91,49 +89,27 @@ public class VND implements Heuristica {
         return solucao;
     }
 
-    //Calcula todas as distancias e retorna distancia total
-    public double calcSolucao(City_node[] nodesList) {
+    private int[] trocaPosicao(int a, int b, int[] nodesList) {
 
-        double totalPath = 0;
+        int[] tmp = nodesList.clone();        //Array temporario para o retorno
 
-        try {
-
-            int i;
-            for (i = 1; i < nodesList.length; i++) {
-                totalPath += nodesList[i].distancia(nodesList[i - 1]);
-            }
-            totalPath += nodesList[i - 1].distancia(nodesList[0]);
-            return totalPath;
-
-        } catch (Exception e) {
-            System.err.println("Problema na funcao Distance do VND");
-        }
-
-        return 0.0;
-    }
-
-    private City_node[] trocaPosicao(int a, int b, City_node[] nodesList) {
-
-        City_node[] tmp = nodesList.clone();        //Array temporario para o retorno
-
-        City_node aux = tmp[a];                     //**********************
+        int aux = tmp[a];                     //**********************
         tmp[a] = tmp[b];                            //Troca posicao dos nodes
         tmp[b] = aux;                               //**********************
 
         return tmp;
     }
 
-    private City_node[] invertaVetor(int inicio, int fim, City_node[] solucao){
+    private int[] invertaVetor(int inicio, int fim, int[] solucao) {
 
-        City_node[] tmp = solucao.clone();
+        int[] tmp = solucao.clone();
         int cont = inicio;
 
-        for(int i = fim ; i >= inicio; i--){
+        for (int i = fim; i >= inicio; i--) {
             tmp[cont] = solucao[i];
             cont++;
         }
 
         return tmp;
     }
-
 }

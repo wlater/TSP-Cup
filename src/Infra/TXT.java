@@ -9,7 +9,7 @@ import java.nio.file.Paths;
 
 public class TXT implements CRUD {
 
-    String diretorio = "src/Infra/instancias/instancias_tsp_cup/";
+    public String diretorio = "src/Infra/instancias/";
 
     private TXT() {}
     
