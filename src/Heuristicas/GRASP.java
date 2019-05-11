@@ -7,16 +7,7 @@ public class GRASP extends Operacoes {
 
     public int[] solucao(int[][] matrizAdj, double alpha, int parada) {
 
-        //alphaAtual = new Random().nextInt(listAlpha[Object]);
-        //.
-        //.
-        //.
-        //.
-        //if(soluAtual < solucao){solucao = soluAtual; listAlpha.get(i).getWeight() += 1 //1 -> 10}
-        //else{listAlpha.get(i).getWeight() -= 1}
-
-        /*
-         * ************************************************************
+        /*************************************************************
          *
          * alpha = variavel de aleatoriedade -> variacao = [0 - 1] onde 0
          * significa que eh completamente guloso e 1 significa que eh
@@ -24,8 +15,8 @@ public class GRASP extends Operacoes {
          *
          * parada eh o numero de iteracoes da metaHeuristica
          *
-         * ************************************************************
-         */
+         * *************************************************************/
+        
         double melhorSolucao = Double.MAX_VALUE;
         int[] solucao = null;
         int[] tmp;
