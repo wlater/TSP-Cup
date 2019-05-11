@@ -7,22 +7,26 @@ public class Construtiva {
         /*
         *   Definido um node, a solucao construida
         *   sera todas as adjacencias a ele
-        */
-        
+         */
         int solucao[] = new int[matriz.length + 1];
         int i = 1, cont;
-        
-        //O inicio da solucao eh o node de partida
-        solucao[0] = node;
-        
-        for (cont = 0; cont < solucao.length - 1; cont++) {
-            solucao[i] = cont;
-            if( cont != node ) i++;
+        try {
+
+            //O inicio da solucao eh o node de partida
+            solucao[0] = node;
+
+            for (cont = 0; cont < solucao.length - 1; cont++) {
+                solucao[i] = cont;
+                if (cont != node) {
+                    i++;
+                }
+            }
+
+            solucao[i] = node;
+        } catch (Exception err) {
+            System.out.println("Problemas na Heuristica Construtiva");
         }
 
-        solucao[i] = node;
-        
-        
         return solucao;
     }
 

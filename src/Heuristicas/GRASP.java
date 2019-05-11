@@ -5,9 +5,17 @@ import java.util.Random;
 
 public class GRASP extends Operacoes {
 
-    public int[] solucao(int[][] matriz, double alpha, int parada) {
+    public int[] solucao(int[][] matrizAdj, double alpha, int parada) {
 
-        /**
+        //alphaAtual = new Random().nextInt(listAlpha[Object]);
+        //.
+        //.
+        //.
+        //.
+        //if(soluAtual < solucao){solucao = soluAtual; listAlpha.get(i).getWeight() += 1 //1 -> 10}
+        //else{listAlpha.get(i).getWeight() -= 1}
+
+        /*
          * ************************************************************
          *
          * alpha = variavel de aleatoriedade -> variacao = [0 - 1] onde 0
@@ -16,19 +24,17 @@ public class GRASP extends Operacoes {
          *
          * parada eh o numero de iteracoes da metaHeuristica
          *
-         *************************************************************
+         * ************************************************************
          */
         double melhorSolucao = Double.MAX_VALUE;
         int[] solucao = null;
         int[] tmp;
+        int[][] matriz = matrizAdj.clone();
         double valueTmp;
 
         for (int i = 0; i < parada; i++) {
 
             solucao = construcao_solucao(alpha, matriz);
-
-            exibeSolucao(solucao);
-
             tmp = new VND().solucao(solucao, matriz);   // buscaLocal(solucao);
             valueTmp = calcSolucao(tmp, matriz);
 
@@ -42,7 +48,9 @@ public class GRASP extends Operacoes {
         return solucao;
     }
 
-    private int[] construcao_solucao(double alpha, int[][] matriz) {
+    private int[] construcao_solucao(double alpha, int[][] matrizAdj) {
+
+        int[][] matriz = matrizAdj.clone();
 
         //Tamanho das listas
         int nCandidatos = matriz.length, lenSolucao = 0;
@@ -61,7 +69,7 @@ public class GRASP extends Operacoes {
             * LC  = [0  1 -1  3  4  5]               // Removendo node da LC
             ************************/
 
-            node = new Random().nextInt(nCandidatos + 1);  // nodeInicial = aleatorio
+            node = new Random().nextInt(nCandidatos);  // nodeInicial = aleatorio
             node = candidatos[node];                // node = candidato 0
             solucao[lenSolucao] = node;             // node inicial
             lenSolucao++;                           // aumenta o tamanho do vetor solucao
@@ -76,7 +84,7 @@ public class GRASP extends Operacoes {
                 MergeSort.sort(vetorAux, matriz[node]);
 
                 //intervalo entre 0 e (nCandidatos * alpha)
-                intervalo = (int) (nCandidatos * alpha);
+                intervalo = (int) ((nCandidatos - 1) * alpha);
 
                 //n assume um valor aleatorio dentro do intervalo
                 n = new Random().nextInt(intervalo + 1);
@@ -84,23 +92,29 @@ public class GRASP extends Operacoes {
                 //novo node sera escolhido aleatoriamente pelo "n"
                 node = vetorAux[n];
 
-                //Se o node ja saiu da lista de candidatos
-                //Procure o proximo de forma gulosa
-                if (candidatos[node] == -1) {
+                try {
 
-                    // Percorrendo toda o vetor auxilar
-                    // este vetor contem os nodes ordenados pela menor distancia
-                    for (int k = 1; k < vetorAux.length; k++) {
+                    //Se o node ja saiu da lista de candidatos
+                    //Procure o proximo de forma gulosa
+                    if (candidatos[node] == -1) {
 
-                        int proxNode = vetorAux[k];
+                        // Percorrendo toda o vetor auxilar
+                        // este vetor contem os nodes ordenados pela menor distancia
+                        for (int k = 1; k < vetorAux.length; k++) {
 
-                        //Se proximo node estiver disponivel, coloque-o na solucao
-                        if (candidatos[proxNode] != -1) {
-                            node = proxNode;        // Atribui o proximo node
-                            break;                  // sai do loop_for
+                            int proxNode = vetorAux[k];
+
+                            //Se proximo node estiver disponivel, coloque-o na solucao
+                            if (candidatos[proxNode] != -1) {
+                                node = proxNode;        // Atribui o proximo node
+                                break;                  // sai do loop_for
+                            }
                         }
+
                     }
 
+                } catch (Exception err) {
+                    System.err.println("Problemas ao encontrar node na LC");
                 }
 
                 node = candidatos[node];                    // node = candidato 0
@@ -125,9 +139,4 @@ public class GRASP extends Operacoes {
             vetor[i] = i;
         }
     }
-
-    private void OrdenaLC(int node, int[] vetorAux, int[][] matriz) {
-
-    }
-
 }

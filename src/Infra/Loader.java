@@ -6,14 +6,15 @@ public class Loader {
 
     public Loader() {
         this.loader = TXT.getInstance();
+        
     }
 
     public int[][] loaderMatrix(String arquivo) {
 
         int matrix[][];
 
-        loader.diretorio += "instancias_teste/";
-        String dados[] = loader.ler(arquivo).split("\n");
+        String diretorio = "instancias_teste/";
+        String dados[] = loader.ler(diretorio + arquivo).split("\n");
         String aux[];
 
         int cont, len = 0;
@@ -25,20 +26,20 @@ public class Loader {
                 len = Integer.parseInt(data[1]);
             }
         }
-        
+
         cont++;
         matrix = new int[len][len];
-        
+
         int i = 0, j;
-        
+
         for (; cont < dados.length; cont++){
-            
+
             dados[cont] = dados[cont].replaceAll("[\\s]+", " ");        //Troca todos os espacos vazios por apenas 1
             aux = dados[cont].split(" ");                               //quebra a string por espaco vazio
-            
+
             j = 0;
             try {
-                
+
                 for (int k = 0; k < aux.length; k++) {
 
                     if (isNumber(aux[k])) {
@@ -46,16 +47,16 @@ public class Loader {
                         j++;
                     }
                 }
-                
+
             } catch (NumberFormatException er) { System.err.println("erro numerico na matrix"); }
               catch (Exception er) { System.err.println("erro na matrix"); }
             i++;
-            
+
         }
-        
+
         return matrix;
     }
-    
+
     private boolean isNumber(String data) {
         try {
             Double.parseDouble(data);
