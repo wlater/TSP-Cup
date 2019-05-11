@@ -2,12 +2,17 @@
 
 ## Objetivos: 
 
- - Representação da solução
- - Implementação heurística de construção
- - Implementação dos movimentos de vizinhança (Mínimo 2)
- - Implementação do VND
- - Implementação de uma meta-heurística
- - Tabela de Resultados
+ - [Representação da solução](https://github.com/wlater/TSP-Cup#representa%C3%A7%C3%A3o-da-solu%C3%A7%C3%A3o)
+
+ - [Implementação heurística de construção](https://github.com/wlater/TSP-Cup#implementa%C3%A7%C3%A3o-heur%C3%ADstica-de-constru%C3%A7%C3%A3o)
+
+ - [Implementação dos movimentos de vizinhança](https://github.com/wlater/TSP-Cup#implementa%C3%A7%C3%A3o-dos-movimentos-de-vizinhan%C3%A7a)
+
+ - [Implementação do VND](https://github.com/wlater/TSP-Cup#implementa%C3%A7%C3%A3o-do-vnd)
+
+ - [Implementação de uma meta-heurística](https://github.com/wlater/TSP-Cup#implementa%C3%A7%C3%A3o-de-uma-meta-heur%C3%ADstica)
+ 
+ - [Tabela de Resultados](https://github.com/wlater/TSP-Cup#tabela-de-resultados)
 
 ### Representação da solução
 
@@ -18,11 +23,11 @@ A representação da solução é dada através da soma da distância de um vér
 
  	Matriz:
 
-		   **1	 2   3   4**
-	**1**    0   5   6   7
-	**2**    5   0   4   2
-	**3**    6   4   0   9
-	**4**    7   2   9   0
+		 1   2   3   4
+	1    0   5   6   7
+	2    5   0   4   2
+	3    6   4   0   9
+	4    7   2   9   0
 
 	totalPath = 2 + 7 + 6 + 4
 ```
@@ -40,7 +45,7 @@ O 2-Opt inverte a ordem dos vértices em um certo limite.
 
 ### Implementação do VND
 
-Tamém encontrada na classe [VND](https://github.com/wlater/TSP-Cup/blob/master/src/Heuristicas/VND.java), O VND aplica o Swap e o 2-Opt na solução. Inicialmente o Swap é aplicado na solução, e continua sendo até que a mesma não consiga ser mais otimizada por esta técnica.
+Tamém encontrada na classe [VND](https://github.com/wlater/TSP-Cup/blob/master/src/Heuristicas/VND.java), este, aplica o Swap e o 2-Opt na solução. Inicialmente o Swap é aplicado na solução, e continua sendo até que a mesma não consiga ser mais otimizada por esta técnica.
 
 Em seguida o 2-Opt é aplicado na solução, e caso a mesma consiga ser melhorada, a técnica de Swap é aplicada novamente.
 
