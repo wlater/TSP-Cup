@@ -1,11 +1,14 @@
 package View;
 
+import Heuristicas.Alpha;
 import Heuristicas.Construtiva;
 import Heuristicas.GRASP;
 import Heuristicas.Operacoes;
 import Heuristicas.VND;
 import Infra.Loader;
 import Model.Grafo;
+import java.util.ArrayList;
+import java.util.Random;
 
 public class Principal {
 
@@ -112,6 +115,8 @@ public class Principal {
         int[][] matriz = G.matriz;
 
         GRASP grasp = new GRASP();
+        
+        ArrayList<Alpha> listAlpha = new ArrayList<Alpha>();
 
         double mediaSolucao = 0, melhorSolucao = Double.MAX_VALUE, mediaTempo = 0, gap;
         double solucaoAtual, valorHeuristica, melhorHC = 0;
@@ -121,9 +126,14 @@ public class Principal {
         int criterioParada = 100;
         double alpha = 0.8;
 
+        
         for (int i = 1; i <= limite; i++) {
 
-            solucao = grasp.solucao(matriz, 1/i, criterioParada);
+            for(int j = 0; j < limite; j++){
+                listAlpha.add(new Alpha());
+            }
+            
+            solucao = grasp.solucao(matriz, listAlpha, criterioParada);
 
             tInicial = System.currentTimeMillis();
 
@@ -133,7 +143,6 @@ public class Principal {
             
             if (solucaoAtual < melhorSolucao) {
                 melhorSolucao = solucaoAtual;
-                alpha = 1/i;
             }
 
             mediaSolucao += solucaoAtual;
@@ -151,7 +160,6 @@ public class Principal {
         System.out.printf("%.2f ms\t", mediaTempo);
         System.out.printf("%.2f ", gap);
         System.out.print("%\t");
-        System.out.print(alpha + "%\t");
         System.out.println(limite);
 
     }

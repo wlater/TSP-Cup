@@ -1,11 +1,12 @@
 package Heuristicas;
 
 import Ordenacao.MergeSort;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class GRASP extends Operacoes {
 
-    public int[] solucao(int[][] matrizAdj, double alpha, int parada) {
+    public int[] solucao(int[][] matrizAdj, ArrayList<Alpha> alphaList, int parada) {
 
         /*************************************************************
          *
@@ -17,21 +18,27 @@ public class GRASP extends Operacoes {
          *
          * *************************************************************/
         
+        
         double melhorSolucao = Double.MAX_VALUE;
         int[] solucao = null;
         int[] tmp;
         int[][] matriz = matrizAdj.clone();
         double valueTmp;
+        Alpha alpha;
+
 
         for (int i = 0; i < parada; i++) {
+            
+            alpha = alphaList.get(new Random().nextInt(alphaList.size())); //seleciona um alpha randomico entra os dados da lsita
 
-            solucao = construcao_solucao(alpha, matriz);
+            solucao = construcao_solucao(alpha.getValue(), matriz);
             tmp = new VND().solucao(solucao, matriz);   // buscaLocal(solucao);
             valueTmp = calcSolucao(tmp, matriz);
 
             if (valueTmp < melhorSolucao) {
                 solucao = tmp;
                 melhorSolucao = valueTmp;
+                alphaList.add(alpha);                   // aumenta o peso do alpha adicionando mais termos dele na lista
             }
 
         }
