@@ -1,27 +1,27 @@
-# Terceiro estágio da disciplina de Análise e Projeto de Algoritmos
+# Third stage of Algorithm Design Analysis
 
-## Objetivos: 
+## Topics:
 
- - [Representação da solução](https://github.com/wlater/TSP-Cup#representa%C3%A7%C3%A3o-da-solu%C3%A7%C3%A3o)
+- [Solution Representation](https://github.com/wlater/TSP-Cup#representa%C3%A7%C3%A3o-da-solu%C3%A7%C3%A3o)
 
- - [Implementação heurística de construção](https://github.com/wlater/TSP-Cup#implementa%C3%A7%C3%A3o-heur%C3%ADstica-de-constru%C3%A7%C3%A3o)
+- [Heuristic implementation of construction](https://github.com/wlater/TSP-Cup#implementa%C3%A7%C3%A3o-heur%C3%ADstica-de-constru%C3%A7%C3%A3o)
 
- - [Implementação dos movimentos de vizinhança](https://github.com/wlater/TSP-Cup#implementa%C3%A7%C3%A3o-dos-movimentos-de-vizinhan%C3%A7a)
+- [Implementation of neighborhood movements](https://github.com/wlater/TSP-Cup#implementa%C3%A7%C3%A3o-dos-movimentos-de-vizinhan%C3%A7a)
 
- - [Implementação do VND](https://github.com/wlater/TSP-Cup#implementa%C3%A7%C3%A3o-do-vnd)
+- [VND Implementation](https://github.com/wlater/TSP-Cup#implementa%C3%A7%C3%A3o-do-vnd)
 
- - [Implementação de uma meta-heurística](https://github.com/wlater/TSP-Cup#implementa%C3%A7%C3%A3o-de-uma-meta-heur%C3%ADstica)
+- [Implementation of a meta-heuristic](https://github.com/wlater/TSP-Cup#implementa%C3%A7%C3%A3o-de-uma-meta-heur%C3%ADstica)
  
- - [Tabela de Resultados](https://github.com/wlater/TSP-Cup#tabela-de-resultados)
+- [Results Table](https://github.com/wlater/TSP-Cup#tabela-de-resultados)
 
 ### Representação da solução
 
-A representação da solução é dada através da soma da distância de um vértice (node) para outro. Está situada na classe [Operações](https://github.com/wlater/TSP-Cup/blob/master/src/Heuristicas/Operacoes.java):
+The solution of the solution is given by summing the distance from one vertex (node) to another. It is located in the class (https://github.com/wlater/TSP-Cup/blob/master/src/Heuristics/Operations.java):
 
 ```
- 	solucao = [ 2 | 4 | 1 | 3 | 2 ]
+ 	solution = [ 2 | 4 | 1 | 3 | 2 ]
 
- 	Matriz:
+ 	Matrix:
 
 		 1   2   3   4
 	1    0   5   6   7
@@ -31,37 +31,37 @@ A representação da solução é dada através da soma da distância de um vér
 
 	totalPath = 2 + 7 + 6 + 4
 ```
-### Implementação heurística de construção
+### Building heuristic implementation
 
-A heuristica de construção foi realizada escolhendo-se um node inicial e inserindo todos os outros de forma sequencial no vetor solução, por fim, a ultima posição do vetor será preenchida com o primeiro vértice inserido. Posteriormente esta solução será melhorada com as funções inseridas no VND.
+Building Heuristic is a initial solution that we need to pass The construct heuristic was performed at one time and at all other levels in an unsolvable sequential manner, with the first positioning of the previous year filled with the first vertex inserted. This solution will be improved with the functions inserted in the VND.
 
-### Implementação dos movimentos de vizinhança
+### Implementation of neighborhood movements
 
-As técnicas de movimento de vizinhança utilizadas foram o Swap e o 2-Opt localizadas na classe [VND](https://github.com/wlater/TSP-Cup/blob/master/src/Heuristicas/VND.java)
+The neighborhood movement techniques used were Swap and 2-Optability in the class [VND] (https://github.com/wlater/TSP-Cup/blob/master/src/Heuristicas/VND.java)
 
-O Swap realiza trocas com os vizinhos mais próximos e vai testando com os mais distantes enquanto a solução for otimizada.
+O The Swap performs the exchanges with the closest neighbors and goes testing with the most distant ones as a solution for optimized.
 
-O 2-Opt inverte a ordem dos vértices em um certo limite.
+O 2-Opt inverts the order of the vertices by a certain limit.
 
-### Implementação do VND
+### VND implementation
 
-Também encontrada na classe [VND](https://github.com/wlater/TSP-Cup/blob/master/src/Heuristicas/VND.java), este, aplica o Swap e o 2-Opt na solução. Inicialmente o Swap é aplicado na solução, e continua sendo até que a mesma não consiga ser mais otimizada por esta técnica.
+It can also be found in (VND) (https://github.com/wlater/TSP-Cup/blob/master/src/Heuristicas/VND.java), this one, applies Swap and 2-Opt in the solution. Initially the Swap is applied to the solution, and remains even slightly more optimized by this technique.
 
-Em seguida o 2-Opt é aplicado na solução, e caso a mesma consiga ser melhorada, a técnica de Swap é aplicada novamente.
+Then the 2-Opt is applied in the solution, and if it can be improved, a Swap technique is used again.
 
-### Implementação de uma meta-heurística
+### Implementation of a metaheuristic
 
-A meta-heurística implementada foi a técnica de GRASP, encontrada na classe [GRASP](https://github.com/wlater/TSP-Cup/blob/master/src/Heuristicas/GRASP.java). A mesma recebe:
+A metaheuristic implemented was a GRASP technique, found in the class [GRASP] (https://github.com/wlater/TSP-Cup/blob/master/src/Heuristicas/GRASP.java). It receives:
 
- - Uma matriz de adjacência: Identifica o valor de distância entre os vértices / nodes
+- An adjacency matrix: Identifies the distance value between the vertices / nodes
 
- - Valor *Alpha*: Um valor em um intervalo de [0 - 1]. Esta representa o grau de aleatoriedade do algoritmo, onde 0 (zero) disnifica que o mesmo é completamente guloso e 1 (um) que é 100% aleatório
+- Value * Alpha *: A value in a range of [0 - 1]. This is the representation of the degree of randomness of the algorithm, where 0 (zero) disallows that it is completely greedy and 1 (one) that is 100% random
 
- - Critério de Parada: Indica para o algoritmo quantas vezes ele deve tentar melhorar a solução encontrada.
+- Stop Criteria:
 
- A técnica GRASP iniciamente constroi a solução inicial por meio dos termos citados acima e em seguida aplica o VND a fim de otimizar a solução encontrada.
+The GRASP technique started the construction of a solution with the terms mentioned above and in the next application.
 
 
-### Tabela de Resultados
+### Results Table
 
  ![tabela](https://github.com/wlater/TSP-Cup/blob/master/img/tabela.jpg?raw=true)
