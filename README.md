@@ -33,21 +33,21 @@ The solution representation is given by summing the distance from one vertex (no
 ```
 ### Building heuristic implementation
 
-Building Heuristic is a initial solution that we need to pass The construct heuristic was performed at one time and at all other levels in an unsolvable sequential manner, with the first positioning of the previous year filled with the first vertex inserted. This solution will be improved with the functions inserted in the VND.
+Building Heuristic is a initial solution that we need to pass for the [VND](https://github.com/wlater/TSP-Cup/blob/master/src/Heuristicas/VND.java) method. The building heuristic was performed choosing one initial node  and inserting all the others in a sequential form on the soluction vector, finally, the last position of the vector will be the first vertice assigned to the vector. Then this soluction will be ready to be passed to the VND method. 
 
 ### Implementation of neighborhood movements
 
-The neighborhood movement techniques used were Swap and 2-Optability in the class [VND](https://github.com/wlater/TSP-Cup/blob/master/src/Heuristicas/VND.java)
+The neighborhood movement techniques used were Swap and 2-Opt, located in the class [VND](https://github.com/wlater/TSP-Cup/blob/master/src/Heuristicas/VND.java)
 
-O The Swap performs the exchanges with the closest neighbors and goes testing with the most distant ones as a solution for optimized.
+O The Swap performs the exchanges with the closest neighbors and goes testing with the most distant ones as a solution goes on.
 
 O 2-Opt inverts the order of the vertices by a certain limit.
 
 ### VND implementation
 
-It can also be found in [VND](https://github.com/wlater/TSP-Cup/blob/master/src/Heuristicas/VND.java), this one, applies Swap and 2-Opt in the solution. Initially the Swap is applied to the solution, and remains even slightly more optimized by this technique.
+It can also be found in [VND](https://github.com/wlater/TSP-Cup/blob/master/src/Heuristicas/VND.java), this one, applies Swap and 2-Opt in the solution. Initially the Swap is applied to the solution, and remains until it couldnt be optmized anymore.
 
-Then the 2-Opt is applied in the solution, and if it can be improved, a Swap technique is used again.
+Then the 2-Opt is applied in the solution, and if it can be improved, a Swap technique is used again, if not, We have our soluction.
 
 ### Implementation of a metaheuristic
 
