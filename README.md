@@ -14,9 +14,9 @@
  
 - [Results Table](https://github.com/wlater/TSP-Cup#tabela-de-resultados)
 
-### Representação da solução
+### Solution Representation
 
-The solution of the solution is given by summing the distance from one vertex (node) to another. It is located in the class (https://github.com/wlater/TSP-Cup/blob/master/src/Heuristics/Operations.java):
+The solution representation is given by summing the distance from one vertex (node) to another. It is located in the class [Operations](https://github.com/wlater/TSP-Cup/blob/master/src/Heuristics/Operations.java):
 
 ```
  	solution = [ 2 | 4 | 1 | 3 | 2 ]
@@ -37,7 +37,7 @@ Building Heuristic is a initial solution that we need to pass The construct heur
 
 ### Implementation of neighborhood movements
 
-The neighborhood movement techniques used were Swap and 2-Optability in the class [VND] (https://github.com/wlater/TSP-Cup/blob/master/src/Heuristicas/VND.java)
+The neighborhood movement techniques used were Swap and 2-Optability in the class [VND](https://github.com/wlater/TSP-Cup/blob/master/src/Heuristicas/VND.java)
 
 O The Swap performs the exchanges with the closest neighbors and goes testing with the most distant ones as a solution for optimized.
 
@@ -51,7 +51,7 @@ Then the 2-Opt is applied in the solution, and if it can be improved, a Swap tec
 
 ### Implementation of a metaheuristic
 
-A metaheuristic implemented was a GRASP technique, found in the class [GRASP] (https://github.com/wlater/TSP-Cup/blob/master/src/Heuristicas/GRASP.java). It receives:
+A metaheuristic implemented was a GRASP technique, found in the class [GRASP](https://github.com/wlater/TSP-Cup/blob/master/src/Heuristicas/GRASP.java). It receives:
 
 - An adjacency matrix: Identifies the distance value between the vertices / nodes
 
