@@ -45,7 +45,7 @@ O 2-Opt inverts the order of the vertices by a certain limit.
 
 ### VND implementation
 
-It can also be found in (VND) (https://github.com/wlater/TSP-Cup/blob/master/src/Heuristicas/VND.java), this one, applies Swap and 2-Opt in the solution. Initially the Swap is applied to the solution, and remains even slightly more optimized by this technique.
+It can also be found in (VND)(https://github.com/wlater/TSP-Cup/blob/master/src/Heuristicas/VND.java), this one, applies Swap and 2-Opt in the solution. Initially the Swap is applied to the solution, and remains even slightly more optimized by this technique.
 
 Then the 2-Opt is applied in the solution, and if it can be improved, a Swap technique is used again.
 
