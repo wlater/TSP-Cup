@@ -57,7 +57,7 @@ A metaheuristic implemented was a GRASP technique, found in the class [GRASP](ht
 
 - Value * Alpha *: A value in a range of [0 - 1]. This is the representation of the degree of randomness of the algorithm, where 0 (zero) disallows that it is completely greedy and 1 (one) that is 100% random
 
-- Stop Criteria:
+- Stop Criteria: It indicates to the algorithm how many times that it should try to improve the solution found.
 
 The GRASP technique started the construction of a solution with the terms mentioned above and in the next application.
 
